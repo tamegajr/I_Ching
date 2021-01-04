@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">I Ching</string>
+    <string name="Line1st">Throw 1st Line</string>
+    <string name="Line2nd">Throw 2nd Line</string>
+    <string name="Line3rd">Throw 3rd Line</string>
+    <string name="Line4th">Throw 4th Line</string>
+    <string name="Line5th">Throw 5th Line</string>
+    <string name="Line6th">Throw 6th Line</string>
+    <string name="title_activity_result">I Ching Restult</string>
+    <string name="i_ching_prediction">I Ching Oracle\'s Prediction</string>
+    <string name="new_i_ching_oracle_s_prediction">New I Ching Oracle\'s Prediction</string>
+    <string name="quick_pressing_warning">You\'ve clicked too fast the throw lines buttons, please, wait until the end of the animation before pressing again</string>
+    <string name="hexagram_file">hexagrams.json</string>
+</resources>

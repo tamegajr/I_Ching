@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="imgResult_width">150dp</dimen>
+    <dimen name="imgResult_height">150dp</dimen>
+    <dimen name="imgMutation_width">150dp</dimen>
+    <dimen name="imgMutation_height">150dp</dimen>
+</resources>

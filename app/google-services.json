@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "386494358766",
+    "project_id": "i-ching-1fd1a",
+    "storage_bucket": "i-ching-1fd1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386494358766:android:0ccb1dfff4402b7133bfff",
+        "android_client_info": {
+          "package_name": "br.com.tamegatech.iching"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386494358766-h3n8i6ol4phoooi555vu74jcdnajrh1r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.tamegatech.iching",
+            "certificate_hash": "52f847521fd7cacb00c64e8e7010a288d04c678b"
+          }
+        },
+        {
+          "client_id": "386494358766-cu8nap8cm841tdrtj54rou833te9kcq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByAMhUOK_uZfEzrGGKQbgKH_H0QaokXxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386494358766-cu8nap8cm841tdrtj54rou833te9kcq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

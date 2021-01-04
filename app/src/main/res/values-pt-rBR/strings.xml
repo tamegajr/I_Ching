@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">I Ching</string>
+    <string name="Line1st">Lance a 1ª Linha</string>
+    <string name="Line2nd">Lance a 2ª Linha</string>
+    <string name="Line3rd">Lance a 3ª Linha</string>
+    <string name="Line4th">Lance a 4ª Linha</string>
+    <string name="Line5th">Lance a 5ª Linha</string>
+    <string name="Line6th">Lance a 6ª Linha</string>
+    <string name="title_activity_result">Resultado I Ching</string>
+    <string name="i_ching_prediction">Predição do Oráculo I Ching</string>
+    <string name="new_i_ching_oracle_s_prediction">Nova Predição do Oráculo I Ching</string>
+    <string name="quick_pressing_warning">Você clicou muito rápido nos botões de lançar linhas, por favor, espere até que a animação termine antes de presesionar de novo</string>
+    <string name="hexagram_file">hexagrams_pt-rBR.json</string>
+</resources>
