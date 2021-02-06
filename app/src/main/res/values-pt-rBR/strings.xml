@@ -12,4 +12,7 @@
     <string name="new_i_ching_oracle_s_prediction">Nova Predição do Oráculo I Ching</string>
     <string name="quick_pressing_warning">Você clicou muito rápido nos botões de lançar linhas, por favor, espere até que a animação termine antes de presesionar de novo</string>
     <string name="hexagram_file">hexagrams_pt-rBR.json</string>
+    <string name="DialogButtonOk">Ok</string>
+    <string name="DialogTitle">Bem-vindo ao Oráculo I Ching</string>
+    <string name="DialogMessage">Mentalize o que deseja perguntar ao Oráculo I Ching</string>
 </resources>

@@ -29,7 +29,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
         Button btnNewPrediction = (Button) findViewById(R.id.btnNewPrediction);
 
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+//        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
         AdView adView_result = (AdView) findViewById(R.id.adView_result);
         AdRequest adRequest_result = new AdRequest.Builder().build();
         adView_result.loadAd(adRequest_result);

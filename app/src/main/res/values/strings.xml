@@ -11,4 +11,7 @@
     <string name="new_i_ching_oracle_s_prediction">New I Ching Oracle\'s Prediction</string>
     <string name="quick_pressing_warning">You\'ve clicked too fast the throw lines buttons, please, wait until the end of the animation before pressing again</string>
     <string name="hexagram_file">hexagrams.json</string>
+    <string name="DialogTitle">Welcome to I Ching\'s Oracle</string>
+    <string name="DialogMessage">Keep in your mind what yow want The Oracle to answer</string>
+    <string name="DialogButtonOk">Ok</string>
 </resources>

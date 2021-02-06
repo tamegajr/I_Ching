@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -55,13 +56,18 @@ public class MainActivity extends AppCompatActivity {
     private StringBuilder strMutation = new StringBuilder();
 //    private String strResult , strMutation;
     private String hex_result, hex_mutation;
+    private final static String AD_UNIT_ID = "ca-app-pub-3940256099942544~3347511713";
     private long lastClick = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<String> testDevices = new ArrayList<>();
+        DialogWelcome Welcome = new DialogWelcome();
+
+        Welcome.show(getSupportFragmentManager(),"Welcome");
+
+       /* List<String> testDevices = new ArrayList<>();
         testDevices.add(AdRequest.DEVICE_ID_EMULATOR);
 
         RequestConfiguration requestConfiguration
@@ -77,9 +83,53 @@ public class MainActivity extends AppCompatActivity {
         });
         MobileAds.setRequestConfiguration(requestConfiguration);
         AdView adView_main = (AdView) findViewById(R.id.adView_main);
-        /*AdRequest adRequest_main = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .build();*/
-        adView_main.loadAd(new AdRequest.Builder().build());
+        *//*AdRequest adRequest_main = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+        .build();*//*
+        adView_main.loadAd(new AdRequest.Builder().build());*/
+
+//        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+
+
+        AdView adView_main = (AdView) findViewById(R.id.adView_main);
+
+        /*List<String> testDevices = new ArrayList<>();
+        testDevices.add(AdRequest.DEVICE_ID_EMULATOR);
+
+        RequestConfiguration requestConfiguration
+                = new RequestConfiguration.Builder()
+                .setTestDeviceIds(testDevices)
+                .build();
+        MobileAds.setRequestConfiguration(requestConfiguration);*/
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener(){
+
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                adView_main.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadBanner();
+                    }
+
+                    private void loadBanner() {
+                        String testDeviceId = AdRequest.DEVICE_ID_EMULATOR.toString();
+
+                        final RequestConfiguration.Builder requestConfigurationBuilder = new RequestConfiguration.Builder();
+
+                        requestConfigurationBuilder.setTestDeviceIds(Collections.singletonList(testDeviceId)).build();
+
+                        final RequestConfiguration requestConfiguration = requestConfigurationBuilder.build();
+
+                        MobileAds.setRequestConfiguration(requestConfiguration);
+                        MobileAds.initialize(getApplicationContext());
+
+                        //                        adView_main.setAdUnitId(AD_UNIT_ID);
+                        AdRequest adRequest_main = new AdRequest.Builder().build();
+                        adView_main.loadAd(adRequest_main);
+                    }
+                });
+            }
+        });
 
 
         imgCoin1 = (ImageView) findViewById(R.id.imgCoin1);
