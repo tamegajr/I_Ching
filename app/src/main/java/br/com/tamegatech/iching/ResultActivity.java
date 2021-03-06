@@ -1,5 +1,6 @@
 package br.com.tamegatech.iching;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,15 +15,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class ResultActivity extends AppCompatActivity {
-
+    private InterstitialAd mInterstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +40,9 @@ public class ResultActivity extends AppCompatActivity {
         Button btnNewPrediction = (Button) findViewById(R.id.btnNewPrediction);
 
 //        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
-        AdView adView_result = (AdView) findViewById(R.id.adView_result);
+        /*AdView adView_result = (AdView) findViewById(R.id.adView_result);
         AdRequest adRequest_result = new AdRequest.Builder().build();
-        adView_result.loadAd(adRequest_result);
+        adView_result.loadAd(adRequest_result);*/
 
         ImageView img_Prediction = (ImageView) findViewById(R.id.imgPrediction_Prediction);
         ImageView img_Mutation = (ImageView) findViewById(R.id.imgMutation_Prediction);
@@ -41,6 +51,8 @@ public class ResultActivity extends AppCompatActivity {
         TextView txt_Mutation = (TextView) findViewById(R.id.txtMutation_Prediction);
 
         Bundle bundle = getIntent().getBundleExtra("iching");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        myInterstitial(adRequest);
 
         if (bundle != null){
             Bundle prediction = bundle.getBundle("prediction");
@@ -130,10 +142,65 @@ public class ResultActivity extends AppCompatActivity {
         btnNewPrediction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ResultActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                MobileAds.initialize(getApplicationContext(), new OnInitializationCompleteListener() {
+                    @Override
+                    public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+                    }
+                });
+
+                if (mInterstitialAd!=null){
+                    mInterstitialAd.show(ResultActivity.this);
+                }else {
+                    Intent intent = new Intent(ResultActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
+    }
+
+    private void myInterstitial(AdRequest adRequest) {
+
+
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull @NotNull InterstitialAd interstitialAd) {
+                        mInterstitialAd = interstitialAd;
+                        mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                            @Override
+                            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                                super.onAdFailedToShowFullScreenContent(adError);
+                            }
+
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+//                                super.onAdShowedFullScreenContent();
+                                mInterstitialAd =null;
+                            }
+
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                Intent intent = new Intent(ResultActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+//                                super.onAdDismissedFullScreenContent();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull @NotNull LoadAdError loadAdError) {
+                        mInterstitialAd = null;
+                    }
+                });
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
     }
 }
