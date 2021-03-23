@@ -67,21 +67,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imgMutation" />
 
-        <TextView
-            android:id="@+id/txtResult"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:scrollbarAlwaysDrawHorizontalTrack="true"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-            android:scrollbarStyle="outsideInset"
-            android:text=""
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imgResult"
-            app:layout_constraintStart_toStartOf="@+id/imgResult"
-            app:layout_constraintTop_toBottomOf="@+id/imgResult" />
-
         <ImageView
             android:id="@+id/imgMutation"
             android:layout_width="150dp"
@@ -90,20 +75,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgResult"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtMutation"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:scrollbarAlwaysDrawHorizontalTrack="true"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-            android:scrollbarStyle="outsideInset"
-            android:text=""
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/imgMutation"
-            app:layout_constraintStart_toStartOf="@+id/imgMutation"
-            app:layout_constraintTop_toBottomOf="@+id/imgMutation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
