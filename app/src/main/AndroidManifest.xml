@@ -13,8 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_iching_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IChing">
-        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".ResultActivity">
+            android:screenOrientation="portrait"
+        </activity>
         <activity android:name=".MainActivity">
+            android:screenOrientation="portrait"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
