@@ -53,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
     private Canvas canvasResult, canvasMutation;
     private final int displacement = 30;
     private final int snddisplacment =5;
-    private int radius, ydisplacement;
+    private int radius, xDisplacement;
     private Boolean hasMutation= false;
     private StringBuilder strResult = new StringBuilder();
     private StringBuilder strMutation = new StringBuilder();
 //    private String strResult , strMutation;
-    private String hex_result, hex_mutation;
+    private String hex_result, hex_mutation, markX;
     private final static String AD_UNIT_ID = "ca-app-pub-3940256099942544~3347511713";
     private long lastClick = 0;
     @Override
@@ -176,9 +176,13 @@ public class MainActivity extends AppCompatActivity {
         Paint paintX = new Paint();
         Paint paintCircle = new Paint();
         radius = 15;
+        markX = "X";
         if (metrics.densityDpi <= 120){
 
-            ydisplacement = -3;
+//            ldpi screens
+
+            markX = "x";
+            xDisplacement = 1;
             paintResultYang.setARGB(255,255,0,0);
             paintResultYang.setStrokeWidth(3);
             paintResultYang.setStyle(Paint.Style.FILL);
@@ -187,12 +191,12 @@ public class MainActivity extends AppCompatActivity {
             paintResultYin.setARGB(255,255,0,0);
             paintResultYin.setStrokeWidth(3);
             paintResultYin.setStyle(Paint.Style.FILL);
-            DashPathEffect dashPathEffect = new DashPathEffect(new float[] {(btmapResultWidth/2)-5f,10f},0);
+            DashPathEffect dashPathEffect = new DashPathEffect(new float[] {(btmapResultWidth/2)-18f,18f},0);
             paintResultYin.setPathEffect(dashPathEffect);
 
 
             paintX.setARGB(255,255,0,0);
-            paintX.setStrokeWidth(2);
+            paintX.setStrokeWidth(1);
             paintX.setStyle(Paint.Style.STROKE);
 
             radius = 5;
@@ -201,7 +205,10 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (metrics.densityDpi > 120 && metrics.densityDpi <= 160){
 
-            ydisplacement = -3;
+//            mdpi
+
+            xDisplacement = 1;
+            markX = "x";
             paintResultYang.setARGB(255,255,0,0);
             paintResultYang.setStrokeWidth(4);
             paintResultYang.setStyle(Paint.Style.FILL);
@@ -210,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
             paintResultYin.setARGB(255,255,0,0);
             paintResultYin.setStrokeWidth(4);
             paintResultYin.setStyle(Paint.Style.FILL);
-            DashPathEffect dashPathEffect = new DashPathEffect(new float[] {(btmapResultWidth/2)-17.5f,30f},0);
+            DashPathEffect dashPathEffect = new DashPathEffect(new float[] {(btmapResultWidth/2)-17.5f,20f},0);
             paintResultYin.setPathEffect(dashPathEffect);
 
 
@@ -225,7 +232,9 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (metrics.densityDpi >160 && metrics.densityDpi<=240){
 
-            ydisplacement =3;
+//            hdpi
+
+            xDisplacement =3;
             paintResultYang.setARGB(255,255,0,0);
             paintResultYang.setStrokeWidth(5);
             paintResultYang.setStyle(Paint.Style.FILL);
@@ -249,7 +258,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
 
-            ydisplacement =0;
+//            xhdpi, xxhdpi, xxxhdpi
+
+            xDisplacement =0;
             paintResultYang.setARGB(255,255,0,0);
             paintResultYang.setStrokeWidth(10);
             paintResultYang.setStyle(Paint.Style.FILL);
@@ -362,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
                                             canvasResult.drawLine(10, ypositionResult,
                                                     btmapResultWidth-10, ypositionResult,
                                                     paintResultYin);
-                                            canvasResult.drawText("X",btmapResultWidth/2 -  ydisplacement
+                                            canvasResult.drawText(markX,btmapResultWidth/2 -  xDisplacement
                                                     ,ypositionResult, paintX);
                                             strResult.append("0");
                                             canvasMutation.drawLine(10, ypositionMutation,
@@ -422,7 +433,7 @@ public class MainActivity extends AppCompatActivity {
                                                     btmapResultWidth-10, ypositionResult,
                                                     paintResultYin);
                                             strResult.append("0");
-                                            canvasResult.drawText("X",btmapResultWidth/2 -ydisplacement
+                                            canvasResult.drawText(markX,btmapResultWidth/2 -xDisplacement
                                                     ,ypositionResult, paintX);
                                             canvasMutation.drawLine(10, ypositionResult,
                                                     btmapResultWidth-10, ypositionResult,
@@ -484,7 +495,7 @@ public class MainActivity extends AppCompatActivity {
                                                     btmapResultWidth-10, ypositionResult,
                                                     paintResultYang);
                                             strMutation.append("1");
-                                            canvasResult.drawText("X",btmapResultWidth/2 -ydisplacement,
+                                            canvasResult.drawText(markX,btmapResultWidth/2 -xDisplacement,
                                                     ypositionResult,paintX);
                                             hasMutation = true;
                                         }else{
@@ -542,7 +553,7 @@ public class MainActivity extends AppCompatActivity {
                                             canvasMutation.drawLine(10, ypositionResult,
                                                     btmapResultWidth-10, ypositionResult,
                                                     paintResultYang);
-                                            canvasResult.drawText("X",btmapResultWidth/2 -ydisplacement
+                                            canvasResult.drawText(markX,btmapResultWidth/2 -xDisplacement
                                                     ,ypositionResult, paintX);
                                             strMutation.append("1");
                                             hasMutation = true;
@@ -601,7 +612,7 @@ public class MainActivity extends AppCompatActivity {
                                             canvasMutation.drawLine(10, ypositionResult,
                                                     btmapResultWidth-10, ypositionResult,
                                                     paintResultYang);
-                                            canvasResult.drawText("X",btmapResultWidth/2 -ydisplacement,
+                                            canvasResult.drawText(markX,btmapResultWidth/2 -xDisplacement,
                                                     ypositionResult, paintX);
                                             strMutation.append("1");
                                             hasMutation = true;
@@ -659,7 +670,7 @@ public class MainActivity extends AppCompatActivity {
                                             canvasMutation.drawLine(10, ypositionResult,
                                                     btmapResultWidth-10, ypositionResult,
                                                     paintResultYang);
-                                            canvasResult.drawText("X",btmapResultWidth/2 -ydisplacement,
+                                            canvasResult.drawText(markX,btmapResultWidth/2 -xDisplacement,
                                                     ypositionResult, paintX);
                                             strMutation.append("1");
                                             hasMutation = true;
