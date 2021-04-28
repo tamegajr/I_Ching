@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_volume_mute.xml" value="0.45784543325526933" />
+        <entry key="app/src/main/res/drawable/ic_baseline_volume_mute_24.xml" value="0.45784543325526933" />
+        <entry key="app/src/main/res/drawable/volume_mute.xml" value="0.8009367681498829" />
+        <entry key="app/src/main/res/layout-hdpi/activity_main.xml" value="0.81625" />
+        <entry key="app/src/main/res/layout-hdpi/activity_result.xml" value="0.5" />
+        <entry key="app/src/main/res/layout-ldpi/activity_main.xml" value="1.6325" />
+        <entry key="app/src/main/res/layout-ldpi/activity_result.xml" value="1.0" />
+        <entry key="app/src/main/res/layout-mdpi/activity_main.xml" value="0.7646370023419203" />
+        <entry key="app/src/main/res/layout-mdpi/activity_result.xml" value="0.81625" />
+        <entry key="app/src/main/res/layout-xhdpi/activity_main.xml" value="0.51015625" />
+        <entry key="app/src/main/res/layout-xhdpi/activity_result.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-xxhdpi-v21/activity_main.xml" value="0.34010416666666665" />
+        <entry key="app/src/main/res/layout-xxhdpi-v21/activity_result.xml" value="0.34010416666666665" />
+        <entry key="app/src/main/res/layout-xxhdpi/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-xxhdpi/activity_result.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.7646370023419203" />
+        <entry key="app/src/main/res/layout/activity_result.xml" value="0.7646370023419203" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

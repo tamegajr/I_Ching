@@ -6,16 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        android:title="@string/app_name"
+        android:titleMarginStart="64dp"
+        android:titleTextColor="@color/design_default_color_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name"
+        app:titleMarginStart="60dp"
+        app:titleTextColor="@color/design_default_color_background" />
+
+    <ImageView
+        android:id="@+id/imgIconIChing"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:src="@mipmap/ic_launcher_iching"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imbtnMusicOff"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/turn_off_music"
+        android:src="@drawable/music_note_off"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/ThrowLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/imgCoin1"
@@ -23,6 +58,7 @@
             android:layout_height="100dp"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
+            android:contentDescription="@string/first_coin"
             android:src="@drawable/i_ching_coin_head" />
 
         <ImageView
@@ -31,6 +67,7 @@
             android:layout_height="100dp"
             android:layout_marginLeft="20dp"
             android:layout_weight="1"
+            android:contentDescription="@string/second_coin"
             android:src="@drawable/i_ching_coin_head" />
 
         <ImageView
@@ -40,6 +77,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:contentDescription="@string/trhird_coin"
             android:src="@drawable/i_ching_coin_head" />
     </LinearLayout>
 
@@ -47,6 +85,8 @@
         android:id="@+id/ResultLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,23 +98,43 @@
 
         <ImageView
             android:id="@+id/imgResult"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/imgMutation"
             app:layout_constraintEnd_toStartOf="@+id/imgMutation"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgMutation" />
+            app:layout_constraintTop_toTopOf="@+id/imgMutation"
+            android:contentDescription="@string/result_hexagram"/>
+        <TextView
+            android:id="@+id/lblPrediction"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:scrollbars="none"
+            android:text="@string/lbl_prediction"
+            app:layout_constraintStart_toStartOf="@+id/imgResult"
+            app:layout_constraintTop_toBottomOf="@+id/imgResult" />
 
         <ImageView
             android:id="@+id/imgMutation"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgResult"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/mutation_hexagram"/>
+        <TextView
+            android:id="@+id/lblMutation"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:scrollbars="none"
+            android:text="@string/lbl_mutation"
+            app:layout_constraintStart_toStartOf="@+id/imgMutation"
+            app:layout_constraintTop_toBottomOf="@+id/imgMutation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -83,6 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
+        android:contentDescription="Throw Coins"
         android:text="@string/Line1st"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +167,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnThrow"></com.google.android.gms.ads.AdView>
+        app:layout_constraintTop_toBottomOf="@+id/btnThrow"
+        android:contentDescription="@string/banner_advertisement"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

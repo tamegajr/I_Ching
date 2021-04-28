@@ -7,7 +7,6 @@
     <string name="Line4th">Lance a 4ª Linha</string>
     <string name="Line5th">Lance a 5ª Linha</string>
     <string name="Line6th">Lance a 6ª Linha</string>
-    <string name="title_activity_result">Resultado I Ching</string>
     <string name="i_ching_prediction">Predição do Oráculo I Ching</string>
     <string name="new_i_ching_oracle_s_prediction">Nova Predição do Oráculo I Ching</string>
     <string name="quick_pressing_warning">Você clicou muito rápido nos botões de lançar linhas, por favor, espere até que a animação termine antes de presesionar de novo</string>
@@ -15,4 +14,19 @@
     <string name="DialogButtonOk">Ok</string>
     <string name="DialogTitle">Bem-vindo ao Oráculo I Ching</string>
     <string name="DialogMessage">Mentalize o que deseja perguntar ao Oráculo I Ching</string>
+    <string name="first_coin">Primeira Moeda</string>
+    <string name="second_coin">Segunda Moeda</string>
+    <string name="trhird_coin">Terceira Moeda</string>
+    <string name="mutation_hexagram">I Ching Hexagrama da Mutação</string>
+    <string name="result_hexagram">I Ching Hexagram do Resultado</string>
+    <string name="throw_coins_button">Botão Lançar Moedas</string>
+    <string name="banner_advertisement">Banner de Anúncios</string>
+    <string name="image_representation_result_hexagram">Imagem representando Hexagrama do Resulado</string>
+    <string name="image_representing_mutation_hexagram">Imagem representando Hexagrama Mutação</string>
+    <string name="interpretation_of_i_ching_s_result_prediction">Interpretação do resultado do I Ching</string>
+    <string name="interpretation_of_i_ching_s_mutation_prediction">Interpretação da mutação do I Ching</string>
+    <string name="turn_off_music">Desligar música</string>
+    <string name="lbl_prediction">Adivinhação</string>
+    <string name="lbl_mutation">Mutação</string>
+    <string name="new_i_ching_oracle_s_prediction_button">Botão de Nova Adivinhação do Oráculo I Ching</string>
 </resources>

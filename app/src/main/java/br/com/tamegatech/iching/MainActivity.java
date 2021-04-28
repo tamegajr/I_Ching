@@ -1,27 +1,33 @@
 package br.com.tamegatech.iching;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
-import android.graphics.PathDashPathEffect;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -36,9 +42,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,55 +58,105 @@ public class MainActivity extends AppCompatActivity {
     private final int displacement = 30;
     private final int snddisplacment =5;
     private int radius, xDisplacement;
-    private Boolean hasMutation= false;
+    private Boolean hasMutation= false, music_off;
     private StringBuilder strResult = new StringBuilder();
     private StringBuilder strMutation = new StringBuilder();
 //    private String strResult , strMutation;
     private String hex_result, hex_mutation, markX;
     private final static String AD_UNIT_ID = "ca-app-pub-3940256099942544~3347511713";
     private long lastClick = 0;
+    private MediaPlayer backgroundMP = new MediaPlayer();
+//    private MediaPlayer coinMP = new MediaPlayer();
+    private SoundPool soundeffect;
+    private int coinFliping;
+    private ImageButton imbtnMusicOff;
+    SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        preferences = getSharedPreferences("iching_preferences", Context.MODE_PRIVATE);
+
+        if (preferences.contains("music")){
+            music_off = preferences.getBoolean("music",false);
+        }else{
+            music_off = false;
+        }
+
         setContentView(R.layout.activity_main);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+/*
+        Bundle bundleretrun = new Bundle();
+
+        bundleretrun.getBundle("return");*/
+      /*  if (bundleretrun!=null){
+            music_off = bundleretrun.getBoolean("music_mode");
+        }else{
+            music_off = false;
+        }*/
+//        Toast.makeText(getApplicationContext(),"Music Off: " + String.valueOf(music_off),Toast.LENGTH_LONG).show();
+
+        /*backgroundMP.stop();
+        backgroundMP = MediaPlayer.create(getApplicationContext(),R.raw.bensound_relaxing);
+        backgroundMP.start();*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build();
+            soundeffect = new SoundPool.Builder()
+                    .setMaxStreams(1)
+                    .setAudioAttributes(audioAttributes)
+                    .build();
+         /*backgroundMP = MediaPlayer.create(getApplicationContext(),R.raw.bensound_relaxing);
+            backgroundMP.start();
+            coinFliping = soundeffect.load(getApplicationContext(), R.raw.coin_flipping,1);*/
+
+        } else {
+            soundeffect = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        }
+        backgroundMP = MediaPlayer.create(getApplicationContext(),R.raw.bensound_relaxing);
+
+
+        coinFliping = soundeffect.load(getApplicationContext(), R.raw.coin_flipping,1);
+
+        imbtnMusicOff = (ImageButton) findViewById(R.id.imbtnMusicOff);
+
+        if (music_off){
+            if (backgroundMP!=null){
+                backgroundMP.stop();
+                imbtnMusicOff.setImageResource(R.drawable.music_note);
+            }
+        }else {
+            imbtnMusicOff.setImageResource(R.drawable.music_note_off);
+            backgroundMP.start();
+        }
+
+        imbtnMusicOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (music_off){
+                    music_off = false;
+                    preferences.edit().putBoolean("music",false).apply();
+                    imbtnMusicOff.setImageResource(R.drawable.music_note_off);
+                    backgroundMP = MediaPlayer.create(getApplicationContext(),R.raw.bensound_relaxing);
+                    backgroundMP.start();
+                }else{
+                    music_off = true;
+                    preferences.edit().putBoolean("music",true).apply();
+                    imbtnMusicOff.setImageResource(R.drawable.music_note);
+                    backgroundMP.stop();
+                }
+
+            }
+        });
 
         DialogWelcome Welcome = new DialogWelcome();
 
         Welcome.show(getSupportFragmentManager(),"Welcome");
 
-       /* List<String> testDevices = new ArrayList<>();
-        testDevices.add(AdRequest.DEVICE_ID_EMULATOR);
-
-        RequestConfiguration requestConfiguration
-                = new RequestConfiguration.Builder()
-                .setTestDeviceIds(testDevices)
-                .build();
-        MobileAds.setRequestConfiguration(requestConfiguration);
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-
-            }
-        });
-        MobileAds.setRequestConfiguration(requestConfiguration);
         AdView adView_main = (AdView) findViewById(R.id.adView_main);
-        *//*AdRequest adRequest_main = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-        .build();*//*
-        adView_main.loadAd(new AdRequest.Builder().build());*/
-
-//        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
-
-
-        AdView adView_main = (AdView) findViewById(R.id.adView_main);
-
-        /*List<String> testDevices = new ArrayList<>();
-        testDevices.add(AdRequest.DEVICE_ID_EMULATOR);
-
-        RequestConfiguration requestConfiguration
-                = new RequestConfiguration.Builder()
-                .setTestDeviceIds(testDevices)
-                .build();
-        MobileAds.setRequestConfiguration(requestConfiguration);*/
 
         MobileAds.initialize(this, new OnInitializationCompleteListener(){
 
@@ -148,11 +202,6 @@ public class MainActivity extends AppCompatActivity {
         int btmapResultHeight = (int) getResources().getDimension(R.dimen.imgResult_height);
         int btmapMutationWidth = (int) getResources().getDimension(R.dimen.imgMutation_width);
         int btmapMutationHeight = (int) getResources().getDimension(R.dimen.imgMutation_height);
-
-//        BitmapFactory.Options
-
-        /*strResult = "";
-        strMutation = "";*/
 
         Bitmap bitmapResult = Bitmap.createBitmap(btmapResultWidth,btmapResultHeight,
                 Bitmap.Config.ARGB_8888);
@@ -293,17 +342,22 @@ public class MainActivity extends AppCompatActivity {
         btnThrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*coinMP.stop();
+                coinMP = MediaPlayer.create(getApplicationContext(),R.raw.coin_flipping);
+                coinMP.start();*/
+
                 /*if (num_line !=1){
                     num_line+=1;
                     angle*=num_line;
                 }*/
                 lastClick = SystemClock.elapsedRealtime();
                 if (btnThrow.getText() == getString(R.string.i_ching_prediction)){
-
-                        startActivity(intent);
-                        finish();
+                    btnThrow.setContentDescription(getString(R.string.i_ching_prediction));
+                    startActivity(intent);
+                    finish();
 
                 }else {
+                    soundeffect.play(coinFliping,0.5f,0.5f,1,0,1);
                     angle+=angle;
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -660,7 +714,6 @@ public class MainActivity extends AppCompatActivity {
                                     ypositionResult -= recuo;
                                     num_line=1;
                                     btnThrow.setText(getResources().getText(R.string.Line1st));
-
                                     if (sum %2 ==0){
                                         if (sum %3 ==0){
                                             canvasResult.drawLine(10, ypositionResult,
@@ -727,8 +780,10 @@ public class MainActivity extends AppCompatActivity {
 
                                     txtResult.setText(strResult);
                                     txtMutation.setText(strMutation);*/
+
                                     bundle.putBundle("prediction",hexagram(strResult));
                                     bundle.putBundle("mutation",hexagram(strMutation));
+                                    bundle.putBoolean("music_mode",music_off);
                                     intent.putExtra("iching",bundle);
                                     btnThrow.setText(R.string.i_ching_prediction);
                                     break;
@@ -740,7 +795,7 @@ public class MainActivity extends AppCompatActivity {
                         txtMutation.setText(strMutation);
 */
                         }
-                    },1000);
+                    },500);
 
 //                Bitmap reducedResult = BitmapFactory.d
                     imgResult.setImageBitmap(bitmapResult);
@@ -748,7 +803,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-
+//                coinMP.stop();
             }
         });
 
@@ -780,6 +835,7 @@ public class MainActivity extends AppCompatActivity {
             hexagram.putLong("number", JO1.getLong("number"));
             hexagram.putString("definition", JO1.getString("definition"));
             hexagram.putString("description", JO1.getString("description"));
+
         }
         catch (IOException | JSONException e){
             e.printStackTrace();
@@ -816,5 +872,17 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception ignored) {}
         }
         return null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        backgroundMP.stop();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        backgroundMP.stop();
+        super.onStop();
     }
 }

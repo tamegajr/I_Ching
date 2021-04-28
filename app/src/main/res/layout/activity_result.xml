@@ -7,12 +7,46 @@
     android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".ResultActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        android:title="@string/app_name"
+        android:titleMarginStart="64dp"
+        android:titleTextColor="@color/design_default_color_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name"
+        app:titleMarginStart="60dp"
+        app:titleTextColor="@color/design_default_color_background" />
+
+    <ImageView
+        android:id="@+id/imgIconIChing"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:src="@mipmap/ic_launcher_iching"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imbtnMusicOff"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/turn_off_music"
+        android:src="@drawable/music_note_off"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ResulPrediction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="20dp"
         android:isScrollContainer="true"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
@@ -21,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
@@ -30,6 +64,7 @@
             android:layout_height="320dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/image_representation_result_hexagram"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgMutation_Prediction"
             app:layout_constraintHorizontal_bias="0.5"
@@ -43,6 +78,7 @@
             android:layout_height="320dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
+            android:contentDescription="@string/image_representing_mutation_hexagram"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -56,7 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="4dp"
-            android:maxLines="10"
+            android:contentDescription="@string/interpretation_of_i_ching_s_mutation_prediction"
+            android:maxLines="6"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbars="vertical"
             android:singleLine="false"
@@ -64,7 +101,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/txtResult_Prediction"
-            app:layout_constraintTop_toBottomOf="@+id/imgMutation_Prediction"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/imgMutation_Prediction" />
 
         <TextView
             android:id="@+id/txtResult_Prediction"
@@ -72,7 +109,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="2dp"
-            android:maxLines="10"
+            android:contentDescription="@string/interpretation_of_i_ching_s_result_prediction"
+            android:maxLines="6"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:scrollbars="vertical"
             android:singleLine="false"
@@ -80,7 +118,7 @@
             app:layout_constraintEnd_toStartOf="@+id/txtMutation_Prediction"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgPrediction_Prediction"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/imgPrediction_Prediction" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -95,24 +133,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNewPrediction"></com.google.android.gms.ads.AdView>
-
+        app:layout_constraintVertical_bias="1.0"
+        android:contentDescription="@string/new_i_ching_oracle_s_prediction_button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

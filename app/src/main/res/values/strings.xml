@@ -6,7 +6,6 @@
     <string name="Line4th">Throw 4th Line</string>
     <string name="Line5th">Throw 5th Line</string>
     <string name="Line6th">Throw 6th Line</string>
-    <string name="title_activity_result">I Ching Restult</string>
     <string name="i_ching_prediction">I Ching Oracle\'s Prediction</string>
     <string name="new_i_ching_oracle_s_prediction">New I Ching Oracle\'s Prediction</string>
     <string name="quick_pressing_warning">You\'ve clicked too fast the throw lines buttons, please, wait until the end of the animation before pressing again</string>
@@ -14,4 +13,19 @@
     <string name="DialogTitle">Welcome to I Ching\'s Oracle</string>
     <string name="DialogMessage">Keep in your mind what yow want The Oracle to answer</string>
     <string name="DialogButtonOk">Ok</string>
+    <string name="first_coin">The First Coin</string>
+    <string name="second_coin">The Second Coin</string>
+    <string name="trhird_coin">The Trhird Coin</string>
+    <string name="mutation_hexagram">I Ching Mutation Hexagram</string>
+    <string name="result_hexagram">I Ching Result Hexagram</string>
+    <string name="throw_coins_button">Throw Coins Button</string>
+    <string name="banner_advertisement">Banner Advertisement</string>
+    <string name="image_representation_result_hexagram">Image representing Result Hexagram</string>
+    <string name="image_representing_mutation_hexagram">Image representing Mutation Hexagram</string>
+    <string name="interpretation_of_i_ching_s_result_prediction">Interpretation of I Ching\'s Result prediction</string>
+    <string name="interpretation_of_i_ching_s_mutation_prediction">Interpretation of I Ching\'s Mutation Prediction</string>
+    <string name="turn_off_music">Turn off Music</string>
+    <string name="lbl_prediction">Prediction</string>
+    <string name="lbl_mutation">Mutation</string>
+    <string name="new_i_ching_oracle_s_prediction_button">New I Ching oracle\'s prediction button</string>
 </resources>

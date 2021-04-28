@@ -3,17 +3,25 @@ package br.com.tamegatech.iching;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.method.ScrollingMovementMethod;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -33,16 +41,20 @@ import java.io.InputStream;
 
 public class ResultActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
+    private ImageButton imbtnMusicOff;
+    private boolean music_off;
+    private MediaPlayer backgroundMP;
+    SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*DisplayMetrics metrics = getResources().getDisplayMetrics();
+        Toast.makeText(getApplicationContext(),String.valueOf(metrics.densityDpi),Toast.LENGTH_LONG).show();*/
         setContentView(R.layout.activity_result);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);// Força somente a orientação retrato
         Button btnNewPrediction = (Button) findViewById(R.id.btnNewPrediction);
 
-//        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
-        /*AdView adView_result = (AdView) findViewById(R.id.adView_result);
-        AdRequest adRequest_result = new AdRequest.Builder().build();
-        adView_result.loadAd(adRequest_result);*/
 
         ImageView img_Prediction = (ImageView) findViewById(R.id.imgPrediction_Prediction);
         ImageView img_Mutation = (ImageView) findViewById(R.id.imgMutation_Prediction);
@@ -53,6 +65,47 @@ public class ResultActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getBundleExtra("iching");
         AdRequest adRequest = new AdRequest.Builder().build();
         myInterstitial(adRequest);
+        preferences = getSharedPreferences("iching_preferences", Context.MODE_PRIVATE);
+
+        music_off = preferences.getBoolean("music",false);
+
+//        music_off  = bundle.getBoolean("music_mode");
+
+//        Toast.makeText(getApplicationContext(),"Music Off: " +String.valueOf(music_off),Toast.LENGTH_LONG).show();
+
+        imbtnMusicOff = (ImageButton) findViewById(R.id.imbtnMusicOff);
+        backgroundMP = MediaPlayer.create(getApplicationContext(),R.raw.bensound_relaxing);
+//        backgroundMP.stop();
+        if (music_off){
+            if (backgroundMP!=null){
+                backgroundMP.stop();
+                imbtnMusicOff.setImageResource(R.drawable.music_note);
+            }
+        }else {
+            imbtnMusicOff.setImageResource(R.drawable.music_note_off);
+            backgroundMP.start();
+        }
+
+        imbtnMusicOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (music_off){
+                    music_off = false;
+                    preferences.edit().putBoolean("music",false).apply();
+                    imbtnMusicOff.setImageResource(R.drawable.music_note_off);
+                    backgroundMP = MediaPlayer.create(getApplicationContext(),R.raw.bensound_relaxing);
+                    backgroundMP.start();
+                }else{
+                    music_off = true;
+                    preferences.edit().putBoolean("music",true).apply();
+                    imbtnMusicOff.setImageResource(R.drawable.music_note);
+                    if (backgroundMP !=null){
+                        backgroundMP.stop();
+                    }
+                }
+
+            }
+        });
 
         if (bundle != null){
             Bundle prediction = bundle.getBundle("prediction");
@@ -152,7 +205,10 @@ public class ResultActivity extends AppCompatActivity {
                 if (mInterstitialAd!=null){
                     mInterstitialAd.show(ResultActivity.this);
                 }else {
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("music_mode",music_off);
                     Intent intent = new Intent(ResultActivity.this, MainActivity.class);
+                    intent.putExtra("return",bundle);
                     startActivity(intent);
                     finish();
                 }
@@ -200,7 +256,14 @@ public class ResultActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
+        backgroundMP.stop();
         super.onStop();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        backgroundMP.stop();
+        super.onDestroy();
     }
 }
