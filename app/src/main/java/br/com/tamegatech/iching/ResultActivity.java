@@ -137,6 +137,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
                 txt_Result.setText(predic_final_Result);
+                txt_Result.setScrollbarFadingEnabled(false);
                 txt_Result.setMovementMethod(new ScrollingMovementMethod());
 
                 long mutation_Number = mutation.getLong("number");
@@ -167,6 +168,7 @@ public class ResultActivity extends AppCompatActivity {
                 }
                 if (txt_Mutation != null){
                     txt_Mutation.setText(mutation_final_Result);
+                    txt_Mutation.setScrollbarFadingEnabled(false);
                     txt_Mutation.setMovementMethod(new ScrollingMovementMethod());
                 }else{
                     txt_Mutation.setVisibility(View.GONE);
@@ -219,7 +221,7 @@ public class ResultActivity extends AppCompatActivity {
     private void myInterstitial(AdRequest adRequest) {
 
 
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
+        InterstitialAd.load(this, getString(R.string.interstitial_id), adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull @NotNull InterstitialAd interstitialAd) {

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">I Ching</string>
     <string name="Line1st">Lance a 1ª Linha</string>
     <string name="Line2nd">Lance a 2ª Linha</string>
     <string name="Line3rd">Lance a 3ª Linha</string>
@@ -11,7 +10,6 @@
     <string name="new_i_ching_oracle_s_prediction">Nova Predição do Oráculo I Ching</string>
     <string name="quick_pressing_warning">Você clicou muito rápido nos botões de lançar linhas, por favor, espere até que a animação termine antes de presesionar de novo</string>
     <string name="hexagram_file">hexagrams_pt-rBR.json</string>
-    <string name="DialogButtonOk">Ok</string>
     <string name="DialogTitle">Bem-vindo ao Oráculo I Ching</string>
     <string name="DialogMessage">Mentalize o que deseja perguntar ao Oráculo I Ching</string>
     <string name="first_coin">Primeira Moeda</string>

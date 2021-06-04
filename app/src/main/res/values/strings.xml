@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">I Ching</string>
+    <string name="app_name" translatable="false">I Ching</string>
     <string name="Line1st">Throw 1st Line</string>
     <string name="Line2nd">Throw 2nd Line</string>
     <string name="Line3rd">Throw 3rd Line</string>
@@ -12,7 +12,7 @@
     <string name="hexagram_file">hexagrams.json</string>
     <string name="DialogTitle">Welcome to I Ching\'s Oracle</string>
     <string name="DialogMessage">Keep in your mind what yow want The Oracle to answer</string>
-    <string name="DialogButtonOk">Ok</string>
+    <string name="DialogButtonOk" translatable="false">Ok</string>
     <string name="first_coin">The First Coin</string>
     <string name="second_coin">The Second Coin</string>
     <string name="trhird_coin">The Trhird Coin</string>
@@ -28,4 +28,6 @@
     <string name="lbl_prediction">Prediction</string>
     <string name="lbl_mutation">Mutation</string>
     <string name="new_i_ching_oracle_s_prediction_button">New I Ching oracle\'s prediction button</string>
+    <string name="banner_id" translatable="false">ca-app-pub-2390878506911025/8059067541</string>
+    <string name="interstitial_id" translatable="false">ca-app-pub-2390878506911025/5678362508</string>
 </resources>
