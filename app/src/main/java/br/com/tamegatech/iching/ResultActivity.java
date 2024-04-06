@@ -199,7 +199,7 @@ public class ResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MobileAds.initialize(getApplicationContext(), new OnInitializationCompleteListener() {
                     @Override
-                    public void onInitializationComplete(InitializationStatus initializationStatus) {
+                    public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {
 
                     }
                 });

@@ -100,22 +100,18 @@ public class MainActivity extends AppCompatActivity {
         /*backgroundMP.stop();
         backgroundMP = MediaPlayer.create(getApplicationContext(),R.raw.bensound_relaxing);
         backgroundMP.start();*/
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                    .build();
-            soundeffect = new SoundPool.Builder()
-                    .setMaxStreams(1)
-                    .setAudioAttributes(audioAttributes)
-                    .build();
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build();
+        soundeffect = new SoundPool.Builder()
+                .setMaxStreams(1)
+                .setAudioAttributes(audioAttributes)
+                .build();
          /*backgroundMP = MediaPlayer.create(getApplicationContext(),R.raw.bensound_relaxing);
             backgroundMP.start();
             coinFliping = soundeffect.load(getApplicationContext(), R.raw.coin_flipping,1);*/
 
-        } else {
-            soundeffect = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        }
         backgroundMP = MediaPlayer.create(getApplicationContext(),R.raw.bensound_relaxing);
 
 
@@ -169,11 +165,11 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     private void loadBanner() {
-                        String testDeviceId = AdRequest.DEVICE_ID_EMULATOR.toString();
+//                        String testDeviceId = AdRequest.DEVICE_ID_EMULATOR.toString();
 
                         final RequestConfiguration.Builder requestConfigurationBuilder = new RequestConfiguration.Builder();
 
-                        requestConfigurationBuilder.setTestDeviceIds(Collections.singletonList(testDeviceId)).build();
+//                        requestConfigurationBuilder.setTestDeviceIds(Collections.singletonList(testDeviceId)).build();
 
                         final RequestConfiguration requestConfiguration = requestConfigurationBuilder.build();
 
